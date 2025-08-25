@@ -12,4 +12,4 @@ frontend:
   build: npm run build
   output: ../backend/static   # IMPORTANT: matches vite.config.ts
 
-command: ["uvicorn", "backend.main:app", "--workers", "4","--host", "0.0.0.0", "--port", "8000"]
+command: ["uvicorn", "backend.main:app", "--workers", "4","--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
