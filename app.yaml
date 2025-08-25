@@ -5,6 +5,8 @@ runtime:
   type: python
   version: "3.10"
 
+entry_point: backend/main.py
+
 frontend:
   path: frontend
   build: npm run build
