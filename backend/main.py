@@ -29,3 +29,7 @@ async def serve_frontend():
         return FileResponse(index_html)
     logger.error("Frontend not built. index.html missing.")
     raise HTTPException(status_code=404, detail="Frontend not built.")
+
+if __name__ == '__main__':
+    # When running locally, ensure 'templates' and 'static' directories are correctly relative
+    app.run(debug=True) # You can change port if needed

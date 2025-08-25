@@ -12,4 +12,12 @@ frontend:
   build: npm run build
   output: ../backend/static
 
-command: ["gunicorn", "backend.main:app", "--workers", "4","--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
+command: [
+  "gunicorn",
+  "backend.main:app",
+  "-w", "2",
+  "-b", "0.0.0.0:8000"
+]
+env:
+- name: NEXT_PUBLIC_DEPLOYMENT_MODE
+  value: "integrated"
