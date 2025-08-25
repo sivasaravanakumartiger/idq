@@ -1,0 +1,13 @@
+name: idq-tiger-app
+version: 1.0.0
+
+runtime:
+  type: python
+  version: "3.10"
+
+frontend:
+  path: frontend
+  build: npm run build
+  output: ../backend/static   # IMPORTANT: matches vite.config.ts
+
+command: ["uvicorn", "backend.main:app", "--workers", "4","--host", "0.0.0.0", "--port", "8000"]

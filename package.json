@@ -1,0 +1,27 @@
+{
+  "name": "databricks-react-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite frontend",
+    "build": "vite build frontend --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.24.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0",
+    "vite": "^5.2.0"
+  },
+  "engines": {
+    "node": "18.18.0",
+    "npm": ">=9.0.0"
+  }
+}

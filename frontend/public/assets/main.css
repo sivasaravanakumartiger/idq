@@ -1,0 +1,663 @@
+/*
+ * =============================================================================
+ * Theme Variables
+ * -----------------------------------------------------------------------------
+ * Core color palette and layout dimensions for the application theme. - static/css/style.css
+ * =============================================================================
+ */
+:root {
+    /* Main Theme Colors */
+    --theme-primary-blue: #006098; /* Defines a custom CSS variable for the primary blue color */
+    --theme-accent-orange: #f38b00; /* Defines a custom CSS variable for the accent orange color */
+    --theme-light-blue: #f5f8fa; /* A light blue for backgrounds */
+    --theme-border-color: #e9ecef; /* A subtle border color */
+
+
+    /* Bootstrap Overrides */
+    --bs-primary: var(--theme-primary-blue); /* Overrides Bootstrap's primary color with the custom variable */
+    --bs-primary-rgb: 0, 96, 152; /* Provides the RGB value for the custom primary color */
+    
+    /* Layout Dimensions */
+    --sidebar-width: 260px;
+    --sidebar-width-collapsed: 80px;
+    --navbar-height: 60px;
+
+    /* Semantic & Utility Colors */
+    --secondary: #6c757d; /* Standard secondary color */
+    --success: #28a745; /* Standard success color */
+    --info: #17a2b8; /* Standard info color */
+    --warning: #ffc107; /* Standard warning color */
+    --danger: #dc3545; /* Standard danger color */
+    --light: #f8f9fa; /* Standard light background color */
+    --dark: #343a40; /* Standard dark color */
+
+    /* Text & Layout */
+    --active-sidebar-text: #ffffff; /* Color for active text in the sidebar */
+    --text-dark: #343a40; /* Dark text color */
+    --text-light: #f8f9fa; /* Light text color */
+    --sidebar-width: 250px; /* Defines the width of the sidebar */
+    --navbar-height: 57.6px; /* Defines the height of the navigation bar */
+}
+
+html, body {
+    height: 100%; /* Ensures the body and html elements take up the full viewport height */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+}
+
+/* * --------------------------------------------------------------------------
+ * FONT CONFIGURATION: This is the updated code block.
+ * We're using a font stack to ensure a consistent sans-serif look.
+ * --------------------------------------------------------------------------
+ */
+body, button, input, select, textarea {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Defines a modern, cross-platform font stack */
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    display: flex; /* Uses Flexbox for main layout */
+    flex-direction: column; /* Stacks children vertically */
+}
+
+a {
+    color: var(--theme-primary-blue); /* Sets link color using the custom primary variable */
+    text-decoration: none; /* Removes underline from links */
+}
+
+a:hover {
+    color: var(--theme-accent-orange); /* Changes link color on hover to the accent orange */
+}
+
+.wrapper {
+    display: flex; /* Uses Flexbox for the main wrapper */
+    min-height: 100vh; /* Ensures the wrapper is at least the full height of the viewport */
+    width: 100%; /* Takes up the full width */
+    flex-direction: column; /* Stacks children vertically */
+}
+
+.main-header.navbar {
+    background-color: var(--theme-primary-blue);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 1030;
+    top: 0;
+    left: 0;
+    height: var(--navbar-height);
+    padding: 0 1.5rem;
+}
+
+.main-header.navbar .navbar-brand,
+.main-header.navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.main-header.navbar .nav-link:hover {
+    color: #fff; /* Changes nav link color to solid white on hover */
+}
+
+/*
+ * =============================================================================
+ * Main Sidebar (New Layout)
+ * =============================================================================
+ */
+.main-sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    height: calc(100vh - var(--navbar-height));
+    background-color: #ffffff;
+    border-right: 1px solid var(--theme-border-color);
+    z-index: 1029; /* Lower than navbar */
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    left: 0;
+    top: var(--navbar-height);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Container for the toggle button */
+.sidebar-top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--theme-border-color);
+}
+
+.sidebar-toggle {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.main-nav {
+    flex-grow: 1;
+}
+
+.nav-sidebar .nav-header {
+    padding: 1.5rem 1.5rem .5rem 1.5rem;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #adb5bd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.nav-sidebar .nav-item .nav-link {
+    color: #495057;
+    padding: 0.8rem 1.5rem;
+    margin: 0.1rem 0.75rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border-radius: 0.5rem;
+    position: relative;
+}
+.nav-sidebar .nav-item .nav-link .nav-icon {
+    margin-right: 1rem;
+    width: 1.75rem;
+    text-align: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    color: #6c757d;
+}
+
+.nav-sidebar .nav-link p {
+    margin-bottom: 0;
+    transition: opacity 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-sidebar .nav-item .nav-link:hover {
+    background-color: var(--theme-light-blue);
+    color: var(--theme-primary-blue);
+}
+
+.nav-sidebar .nav-item .nav-link:hover .nav-icon {
+    color: var(--theme-primary-blue);
+}
+
+.nav-sidebar .nav-item .nav-link.active {
+    background-color: var(--theme-primary-blue);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 96, 152, 0.3);
+}
+
+.nav-sidebar .nav-item .nav-link.active .nav-icon {
+    color: #ffffff;
+}
+
+.content-wrapper {
+    margin-left: var(--sidebar-width); /* Sets the left margin to account for the sidebar width */
+    padding-top: var(--navbar-height); /* Adds top padding to account for the navbar height */
+    flex-grow: 1; /* Allows the content wrapper to grow and fill available space */
+    background-color: #f4f6f9; /* Sets the background color of the main content area */
+    transition: margin-left 0.3s ease-in-out; /* Adds a smooth transition for the margin */
+    min-height: calc(100vh - var(--navbar-height) - 40px); /* Sets the minimum height of the content area */
+    display: flex; /* Uses Flexbox for internal layout */
+    flex-direction: column; /* Stacks children vertically */
+}
+
+.main-footer {
+    background-color: #ffffff;
+    border-top: 1px solid var(--theme-border-color);
+    color: #6c757d;
+    padding: 1rem 1.5rem;
+    margin-top: auto; /* Pushes footer to bottom */
+    text-align: center;
+}
+
+/*
+ * =============================================================================
+ * Collapse & Hover States (Desktop)
+ * =============================================================================
+ */
+@media (min-width: 992px) {
+    body.sidebar-collapse .main-sidebar {
+        width: var(--sidebar-width-collapsed);
+    }
+    
+    body.sidebar-collapse .content-wrapper {
+        margin-left: var(--sidebar-width-collapsed);
+    }
+
+    body.sidebar-collapse .main-sidebar:hover {
+        width: var(--sidebar-width);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        z-index: 1032;
+    }
+
+    body.sidebar-collapse .nav-sidebar .nav-link p,
+    body.sidebar-collapse .nav-sidebar .nav-header,
+    body.sidebar-collapse .sidebar-top {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+    }
+    
+    body.sidebar-collapse .nav-sidebar .nav-item .nav-link {
+        justify-content: center;
+    }
+    
+    body.sidebar-collapse .nav-sidebar .nav-item .nav-link .nav-icon {
+        margin-right: 0;
+    }
+
+    body.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
+    body.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-header,
+    body.sidebar-collapse .main-sidebar:hover .sidebar-top {
+        opacity: 1;
+        width: auto;
+    }
+    
+    body.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-item .nav-link {
+        justify-content: flex-start;
+    }
+    
+    body.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-item .nav-link .nav-icon {
+        margin-right: 1rem;
+    }
+}
+
+/*
+ * =============================================================================
+ * Mobile Styles
+ * =============================================================================
+ */
+@media (max-width: 991.98px) {
+    body:not(.sidebar-collapse) .main-sidebar {
+        margin-left: 0;
+        width: var(--sidebar-width);
+        box-shadow: 0 0 20px rgba(0,0,0,.3);
+    }
+
+    body.sidebar-collapse .main-sidebar {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    
+    .content-wrapper {
+        margin-left: 0 !important; /* Use important to override desktop styles */
+    }
+
+    .main-footer {
+        text-align: left;
+    }
+}
+
+.content-header {
+    padding: 1rem 1rem 0rem 1rem; /* Sets padding for the content header */
+    background-color: #ffffff; /* Sets the background color to white */
+    border-bottom: 1px solid #dee2e6; /* Adds a border at the bottom */
+    white-space: nowrap; /* Prevents text wrapping */
+    margin-bottom: 0; /* Removes the bottom margin */
+}
+
+.content-header .breadcrumb {
+    font-size: 0.875rem; /* Sets a smaller font size for breadcrumbs */
+    margin-bottom: 0; /* Removes the bottom margin */
+    padding: 0.5rem 0.5rem; /* Sets padding */
+    background-color: #e9ecef; /* Sets a light gray background color */
+    border-radius: .25rem; /* Rounds the corners */
+    font-weight: 500; /* Sets a medium font weight */
+}
+
+.table tr.pointer {
+    cursor: pointer; /* Changes the cursor to a pointer for rows with this class */
+}
+
+.form-check-input:indeterminate {
+    background-color: var(--theme-primary-blue); /* Sets the background color for indeterminate checkboxes */
+    border-color: var(--theme-primary-blue); /* Sets the border color for indeterminate checkboxes */
+}
+
+/* Change this section */
+.step-indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative; /* Add this */
+    display: flex;      /* Add this */
+    justify-content: center; /* Add this */
+    align-items: center;     /* Add this */
+    overflow: hidden;        /* Add this to hide overflowing text */
+}
+
+/* Add a new rule for the icons to position them absolutely */
+.step-indicator .fas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9em; /* Adjust font size for better fit */
+}
+
+/* Ensure the number is also positioned correctly */
+.step-indicator span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.step-label {
+    font-size: 0.875rem; /* Sets a smaller font size for step labels */
+    font-weight: 500; /* Sets a medium font weight */
+}
+
+.step-line {
+    width: 40px; /* Sets the width of the line between steps */
+    height: 1px; /* Sets the height of the line */
+    background-color: #dee2e6; /* Sets the color of the line */
+}
+
+.custom-info-box {
+    min-height: 90px; /* Sets a minimum height for the info box */
+    border-radius: 0.25rem; /* Rounds the corners */
+    margin-bottom: 1rem; /* Adds bottom margin */
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2); /* Adds a box shadow */
+    color: #fff; /* Sets the text color to white */
+    display: flex; /* Uses Flexbox for internal layout */
+    align-items: center; /* Vertically centers content */
+    padding: 0.875rem 1rem; /* Sets padding */
+    cursor: pointer; /* Changes the cursor to a pointer */
+    transition: all 0.3s ease; /* Adds a smooth transition for hover effects */
+}
+
+.custom-info-box:hover {
+    transform: translateY(-3px); /* Lifts the box on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Changes the box shadow on hover */
+}
+
+.custom-info-box .icon {
+    font-size: 2.5rem; /* Sets the font size for the icon */
+    width: 70px; /* Sets a fixed width for the icon container */
+    text-align: center; /* Centers the icon horizontally */
+    opacity: 0.7; /* Reduces the opacity of the icon */
+}
+
+.custom-info-box .content {
+    flex-grow: 1; /* Allows the content to grow and fill available space */
+    padding-left: 10px; /* Adds left padding */
+}
+
+.custom-info-box .text, .custom-info-box .number, .custom-info-box .description {
+    display: block; /* Makes the elements block-level */
+}
+.custom-info-box .text { font-size: 0.875rem; text-transform: uppercase; margin-bottom: 0.25rem; } /* Styles the text inside the info box */
+.custom-info-box .number { font-size: 1.8rem; font-weight: bold; margin-bottom: 0.25rem; } /* Styles the number inside the info box */
+.custom-info-box .description { font-size: 0.75rem; opacity: 0.8; } /* Styles the description inside the info box */
+
+.custom-info-box .progress {
+    height: 5px; /* Sets a fixed height for the progress bar */
+    background-color: rgba(255,255,255,.2); /* Sets a semi-transparent white background color */
+    margin-bottom: 0.25rem; /* Adds a bottom margin */
+}
+
+.custom-info-box .progress-bar {
+    background-color: #fff; /* Sets the color of the progress bar to white */
+}
+
+.card {
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2); /* Adds a box shadow to cards */
+    border-radius: 0.25rem; /* Rounds the corners */
+    margin-bottom: 1.5rem; /* Adds bottom margin */
+}
+.card-header {
+    background-color: #fff; /* Sets the background color to white */
+    border-bottom: 1px solid rgba(0,0,0,.125); /* Adds a border at the bottom */
+    padding: 0.75rem 1.25rem; /* Sets padding */
+    position: relative; /* Sets the positioning context for child elements */
+    display: flex; /* Uses Flexbox for internal alignment */
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Spaces out items evenly */
+}
+.card-title {
+    font-size: 1.1rem; /* Sets the font size of the card title */
+    font-weight: 500; /* Sets a medium font weight */
+    margin-bottom: 0; /* Removes the bottom margin */
+}
+
+.card-footer {
+    padding: 0.75rem 1.25rem; /* Sets padding for the card footer */
+    background-color: rgba(0,0,0,.03); /* Sets a light gray background color */
+    border-top: 1px solid rgba(0,0,0,.125); /* Adds a border at the top */
+}
+
+.job-details-card {
+    border-left: 4px solid var(--theme-accent-orange); /* Adds a left border with the accent orange color */
+}
+
+.status-badge {
+    padding: 5px 10px; /* Sets padding for status badges */
+    border-radius: 20px; /* Makes the corners very rounded */
+    font-weight: 500; /* Sets a medium font weight */
+    font-size: 0.8rem; /* Sets a smaller font size */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.page-item.active .page-link {
+    background-color: var(--theme-accent-orange) !important; /* Sets the background color of the active pagination button */
+    border-color: var(--theme-accent-orange) !important; /* Sets the border color of the active pagination button */
+    color: #fff !important; /* Sets the text color of the active pagination button to white */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.page-item .page-link {
+    color: var(--theme-accent-orange); /* Sets the text color of inactive pagination buttons */
+}
+/* Styling for DataTables search input and "Show entries" select dropdown */
+/* Style for the DataTables search input */
+/* Style for the default DataTables search input */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.25rem; /* Rounds the corners of the search input */
+    border: 1px solid #ced4da; /* Adds a border */
+    padding: 0.375rem 0.75rem; /* Sets padding */
+    background-color: #fff; /* Sets the background color to white */
+    color: var(--text-dark); /* Sets the text color to dark */
+    appearance: auto; /* Uses the default browser appearance */
+    
+    /* Adds the search icon as a background image */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M10.442 11.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z'/%3e%3cpath fill-rule='evenodd' d='M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
+    background-repeat: no-repeat; /* Prevents the icon from repeating */
+    background-position: left 0.75rem center; /* Positions the icon on the left */
+    background-size: 1rem 1rem; /* Sets the size of the icon */
+    padding-left: 2.5rem; /* Make room for the icon */
+}
+
+/* Style for the "Show entries" select dropdown */
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 0.25rem; /* Rounds the corners of the select dropdown */
+    border: 1px solid #ced4da; /* Adds a border */
+    padding: 0.375rem 0.75rem; /* Sets padding */
+    
+    /* Re-add the fix for the select element here */
+    width: auto; /* Sets the width to automatic */
+    max-width: 80px; /* Sets a maximum width */
+    padding-right: 25px; /* Adds right padding */
+    -webkit-appearance: none; /* Removes default browser styling for select elements */
+    -moz-appearance: none; /* For older browsers */
+    appearance: none; /* For modern browsers */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-search' viewBox='0 0 16 16'%3e%3cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3e%3c/svg%3e");
+    background-repeat: no-repeat; /* Prevents the icon from repeating */
+    background-position: right 0.75rem center; /* Positions the icon on the right */
+    background-size: 10px 10px; /* Sets the size of the icon */
+}
+
+.table thead th {
+    background-color: #f8f9fa; /* Sets a light gray background color for table headers */
+    color: #343a40; /* Sets a dark text color */
+    border-bottom: 2px solid #dee2e6; /* Adds a thicker border at the bottom */
+    font-weight: 700; /* Sets a bold font weight */
+    text-transform: capitalize; /* Capitalizes the first letter of each word */
+}
+
+.btn-primary{
+    background-color: var(--theme-primary-blue); /* Sets the background color of primary buttons */
+    border-color: var(--theme-primary-blue); /* Sets the border color of primary buttons */
+    color: #fff; /* Sets the text color to white */
+}
+
+.btn-outline-primary {
+    background-color: transparent; /* Sets a transparent background for outline buttons */
+    border-color: var(--theme-primary-blue); /* Sets the border color of outline buttons */
+    color: var(--theme-primary-blue); /* Sets the text color of outline buttons */
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-outline-primary:hover {
+    background-color: var(--theme-accent-orange);
+    border-color: var(--theme-accent-orange);
+    color: #fff;
+}
+
+.btn-primary:disabled {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+@media (max-width: 991.98px) {
+    .main-sidebar,
+    .brand-link {
+        margin-left: calc(-1 * var(--sidebar-width)); /* Collapses the sidebar on smaller screens */
+    }
+    .main-header.navbar {
+        padding-left: 1rem; /* Reduces the navbar's left padding on smaller screens */
+    }
+    .content-wrapper {
+        margin-left: 0; /* Removes the left margin from the content wrapper on smaller screens */
+    }
+    .main-footer {
+        margin-left: 0; /* Removes the left margin from the footer on smaller screens */
+        text-align: left; /* Aligns the footer text to the left */
+    }
+    body.sidebar-collapse .main-sidebar,
+    body.sidebar-collapse .brand-link {
+        margin-left: 0; /* Shows the sidebar when the body has the 'sidebar-collapse' class on smaller screens */
+    }
+}
+
+
+.form-label {
+    font-weight: bold; /* Makes form labels bold */
+}
+
+
+@media (max-width: 991.98px) {
+    .main-sidebar,
+    .brand-link {
+        margin-left: calc(-1 * var(--sidebar-width)); /* Collapses the sidebar on smaller screens */
+    }
+    .main-header.navbar {
+        padding-left: 1rem; /* Reduces the navbar's left padding on smaller screens */
+    }
+    .content-wrapper {
+        margin-left: 0; /* Removes the left margin from the content wrapper on smaller screens */
+    }
+    .main-footer {
+        margin-left: 0; /* Removes the left margin from the footer on smaller screens */
+        text-align: left; /* Aligns the footer text to the left */
+    }
+    body.sidebar-collapse .main-sidebar,
+    body.sidebar-collapse .brand-link {
+        margin-left: 0; /* Shows the sidebar when the body has the 'sidebar-collapse' class on smaller screens */
+    }
+}
+
+
+.bg-success-light {
+    background-color: rgba(40,167,69,0.1) !important;
+}
+
+/* Different icons for new vs existing rules */
+.fa-plus-circle {
+    font-size: 0.9em;
+}
+
+
+
+/* Add to your CSS file */
+.bg-warning-light {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+}
+
+.bg-danger-light {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.clickable-rule {
+    transition: all 0.2s ease;
+}
+
+.clickable-rule:hover {
+    background-color: rgba(0, 96, 152, 0.05) !important;
+}
+
+.clickable-rule.active {
+    border-left: 4px solid var(--theme-primary-blue);
+    background-color: rgba(0, 96, 152, 0.05) !important;
+}
+
+/* =============================================================================
+ * Page Loader Styles
+ * ============================================================================= */
+.page-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff00;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.page-loader-overlay.hidden {
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to go through after it's hidden */
+}
+
+.loader {
+  width: 8px;
+  height: 48px;
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+  color: #ff8001;
+  box-sizing: border-box;
+  animation: animloader 0.6s linear infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 20px -10px, 40px 10px, 60px 0px;
+  }
+  25% {
+    box-shadow: 20px 0px, 40px  0px, 60px 10px;
+  }
+  50% {
+    box-shadow: 20px 10px, 40px -10px, 60px 0px;
+  }
+  75% {
+    box-shadow: 20px 0px, 40px 0px, 60px -10px;
+  }
+  100% {
+    box-shadow: 20px -10px, 40px 10px, 60px 0px;
+  }
+}
+
+/* ========================== */
